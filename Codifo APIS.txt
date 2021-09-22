@@ -1,0 +1,25 @@
+class CarritoAPI(viewsets.ViewS
+def partial_update(self, request, pk=None):
+        #Actualización parcial => PATCH
+        carrito = get_object_or_404(CarritoCompras, pk=pk)
+        carritoS = CarritoSerial(carrito, request.data, partial=True)
+        if carritoS.is_valid():
+            carritoS.save()
+            return Response("Actualizado")
+        return Response(carritoS.errors)
+
+    def update(self, request, pk=None):
+        #Actualiza registros => PUT
+        carrito = get_object_or_404(CarritoCompras, pk=pk)
+        carritoS = CarritoSerial(carrito, request.data)
+        if carritoS.is_valid():
+            carritoS.save()
+            return Response("Actualizado")
+        return Response(carritoS.errors)
+        
+    
+    def destroy(self, request, pk=None):
+        #borramos elementos en base de datos
+        carrito = CarritoCompras.objects.get(id=pk)
+        carrito.delete()
+        return Response({"Objeto borrado":True})
