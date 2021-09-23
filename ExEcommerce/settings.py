@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Productos',
-    'checkout1098681166',
+    'checkout1098681166_1',
     'rest_framework',
     'rest_framework.authtoken'
     
