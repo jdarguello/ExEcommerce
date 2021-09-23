@@ -17,3 +17,9 @@ class ProductoSerial(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = ["nombre", "precio", "descripcion", "marca", "ref", "tipoEl"]
+
+
+class ComentarioSerial(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = '__all__'
