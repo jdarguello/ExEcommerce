@@ -1,12 +1,10 @@
-from functools import partial
-import re
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST
-from django.shortcuts import *
+from django.shortcuts import get_object_or_404
 
-from .serializers import CarritoSerial, InfoEnvioSerial
-from .models import CarritoCompra, InfoEnvio
+from .serializers import CarritoSerial, InfoEnvioSerial, ArticuloSerial
+from .models import CarritoCompra, InfoEnvio, Articulo
 
 
 class CarritoAPI(viewsets.ViewSet):
@@ -41,8 +39,8 @@ class CarritoAPI(viewsets.ViewSet):
         carrito_s = CarritoSerial(carrito, request.data, partial=True)
         if carrito_s.is_valid():
             carrito_s.save()
-            return Response('Actualizado')
-        return Response(carrito_s.errors)
+            return Response({'Actualizado':True})
+        return Response(carrito_s.errors, HTTP_400_BAD_REQUEST)
 
 
     # No recomendado para carrito de compra -- No queremos cambiar user
@@ -67,7 +65,19 @@ class CarritoAPI(viewsets.ViewSet):
 #       return Response(pk)
 
 
+class ArticuloAPI(viewsets.ViewSet):
+    def list(self, request):
+        articulo = Articulo.objects.all()
+        serializer = ArticuloSerial(articulo, many=True)
+        return Response(serializer.data)
 
+
+    def create(self, request):
+        serializer = Articulo(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'Arituculo creado':True})
+        return Response(serializer.errors, HTTP_400_BAD_REQUEST)
 
 
 class InfoEnvioAPI(viewsets.ViewSet):
