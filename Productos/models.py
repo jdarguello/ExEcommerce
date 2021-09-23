@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class TipoElectrodomestico(models.Model):
     nombre = models.CharField(max_length=200)
-    foto = models.ImageField(null =True, blank=True)
+    foto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         #Identificar un objeto
