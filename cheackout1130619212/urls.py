@@ -7,7 +7,7 @@ from cheackout1130619212.views import *
 
 router = DefaultRouter()
 router.register('Carrito', CarritoAPI)
-router.register('Articulo',ArticuloAPI)
+router.register('Articulo',ArticuloAPI,basename='Arti')
 router.register('Info',InfoAPI)
 
 urlpatterns = [
