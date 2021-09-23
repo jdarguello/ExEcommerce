@@ -4,5 +4,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('productos/api/', include('Productos.urls')),
-    path('checkout/api/',include('checkout1073246233.urls'))
+
+    path('checkout/api/',include('checkout1073246233.urls')),
+
+    path('checkout/api/', include('Checkout.urls'))
+
 ]
