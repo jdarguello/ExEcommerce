@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Productos',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'checkout1136881597'
 ]
 
 REST_FRAMEWORK = {
