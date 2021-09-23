@@ -31,8 +31,13 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
+    @property
     def calcularCalificacion(self):
-        pass
+        comentarios = self.comentario_set.all()
+        calificacion = 0
+        for comentario in comentarios:
+            calificacion += comentario.calificacion
+        return calificacion/len(comentarios)
 
 class Comentario(models.Model):
     usuario = models.CharField(max_length=100)
@@ -41,9 +46,7 @@ class Comentario(models.Model):
     fecha = models.DateField(auto_now_add=True) #16/09/2021
     #DateTimeField() 16/09/2021 - 3:13:40 p.m.
     #TimeField()
-    contenido = models.TextField ()
+    contenido = models.TextField()
 
     def __str__(self):
         return self.usuario + " - " + self.producto.nombre
-
-
