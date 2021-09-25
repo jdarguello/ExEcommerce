@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'Checkout',
-    'Servicios'
+    'Usuarios',
+    'aeropuerto'
 ]
 
 REST_FRAMEWORK = {

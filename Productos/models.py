@@ -1,5 +1,7 @@
 from django.db import models
 
+from Usuarios.models import *
+
 # Create your models here.
 class TipoElectrodomestico(models.Model):
     nombre = models.CharField(max_length=200)
@@ -40,7 +42,7 @@ class Producto(models.Model):
         return calificacion/len(comentarios)
 
 class Comentario(models.Model):
-    usuario = models.CharField(max_length=100)
+    usuario = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     calificacion = models.FloatField()
     fecha = models.DateField(auto_now_add=True) #16/09/2021

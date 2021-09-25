@@ -4,8 +4,13 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from django.shortcuts import get_object_or_404
 
 from Checkout.serializers import *
+from rest_framework import authentication, permissions
+
+from Checkout.permissions import *
 
 class CarritoComprasAPI(viewsets.ViewSet):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = ()
     def list(self, request):
         carritos = CarritoCompras.objects.all()
         serializer = CarritoSerial(carritos, many=True)

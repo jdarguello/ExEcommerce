@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from Productos.models import Producto
+from Usuarios.models import *
 
 class CarritoCompras(models.Model):
-    usuario = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+    usuario = models.ForeignKey(Perfil, on_delete=models.SET_NULL, null = True)
     fecha = models.DateTimeField(auto_now_add=True)
     pagado = models.BooleanField(default=False)
 
